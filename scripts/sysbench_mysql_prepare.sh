@@ -68,7 +68,7 @@ ARGS="\
 "
 
 # OLTP参数含义查看:
-# sysbench /usr/local/sysbench/share/sysbench/oltp_read_write.lua help
+# sysbench /usr/share/sysbench/oltp_read_write.lua help
 OLTP_ARGS="\
 --auto_inc=on \
 --create_secondary=on \

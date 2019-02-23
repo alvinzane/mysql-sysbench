@@ -83,9 +83,9 @@ OLTP_ARGS="\
 --mysql-ignore-errors=all \
 "
 
-TESTNAME=/usr/share/sysbench/$SCRIPT_NAME
+TESTNAME=/usr/share/sysbench/$SCRIPT_NAME.lua
 
-dCMD_RUN="sysbench $TESTNAME $ARGS $OLTP_ARGS run "
+CMD_RUN="sysbench $TESTNAME $ARGS $OLTP_ARGS run "
 CMD_CLEANUP="sysbench $TESTNAME $ARGS $OLTP_ARGS cleanup"
 #echo $CMD_RUN
 #echo $CMD_CLEANUP
