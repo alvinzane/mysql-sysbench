@@ -2,15 +2,10 @@
 # Usage:
 # ./sysbench_mysql_oltp.sh 10 600
 
-# 默认值
-HOST=localhost
-PORT=3306
-USER=root
-PASSWORD=aaaaaa
-DB=dbtest1
+# 加载连接配置
+BASE_DIR=$(dirname $0)
+source $BASE_DIR/sysbench_mysql.conf.sh
 
-# 日志目录
-LOG_DIR=`pwd`
 # 默认测试模式
 SCRIPT_NAME=oltp_read_write
 
@@ -78,15 +73,15 @@ OLTP_ARGS="\
 --simple_ranges=1 \
 --skip_trx=off \
 --sum_ranges=1 \
---table_size=1000000 \
 --tables=20 \
 --mysql-ignore-errors=all \
 "
 
-TESTNAME=/usr/share/sysbench/$SCRIPT_NAME.lua
+TESTNAME=$SCRIPT_NAME
+#TESTNAME=/usr/share/sysbench/$SCRIPT_NAME.lua
 
 CMD_RUN="sysbench $TESTNAME $ARGS $OLTP_ARGS run "
 CMD_CLEANUP="sysbench $TESTNAME $ARGS $OLTP_ARGS cleanup"
 #echo $CMD_RUN
 #echo $CMD_CLEANUP
-$CMD_RUN | tee -a $LOG_DIR/`date +%Y%m%d`_${HOST}_`basename $TESTNAME .lua`_${THREADS}_`date +%Y%m%d_%H%M%S`.log
+$CMD_RUN | tee -a `pwd`/`date +%Y%m%d`_${HOST}_`basename $TESTNAME .lua`_${THREADS}_`date +%Y%m%d_%H%M%S`.log

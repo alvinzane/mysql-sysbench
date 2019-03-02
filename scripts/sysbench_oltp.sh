@@ -11,7 +11,10 @@ export LD_LIBRARY_PATH=/usr/local/mysql/lib/
 #set -x
 #set -e
 
-BASEDIR="/home/sysbench"
+BASEDIR=`pwd`
+
+# 加载连接配置
+source ./sysbench_mysql.conf.sh
 
 # 并发压测的线程数，根据机器配置实际情况进行调整
 RUN_NUMBER="16 32 64 128 256 512 1024"
@@ -27,16 +30,16 @@ round=1
 # 一般至少跑3轮测试
 while [ ${round} -lt 2 ]
 do
-    round_dir="${BASEDIR}/`date +%Y%m%d`-logs-round${round}"
+    round_dir="${LOG_DIR}/`date +%Y%m%d`-logs-round${round}"
     mkdir -p ${round_dir}
     cd ${round_dir}
 
     for thread in `echo "${RUN_NUMBER}"`
     do
         ${BASEDIR}/sysbench_mysql_oltp.sh ${thread} ${TIME} 2> ${BASEDIR}/sysbench.log
-    sleep ${SLEEP}
+        sleep ${SLEEP}
     done
 
     round=`expr ${round} + 1`
-sleep ${SLEEP}
+    sleep ${SLEEP}
 done

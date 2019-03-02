@@ -7,17 +7,15 @@
 # 第四个参数为库名
 # 说明: 进程数和表数据量一致, 会比较快
 
+
+# 加载连接配置
+source ./sysbench_mysql.conf.sh
+
 # 默认值
-HOST=localhost
-PORT=3306
-USER=root
-PASSWORD=aaaaaa
-DB=dbtest1
 TABLES=50
 SIZE=10000
 
-# 日志目录
-LOG_DIR=/home/sysbench/logs
+
 # 默认测试模式
 SCRIPT_NAME=oltp_read_write
 
