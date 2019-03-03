@@ -88,7 +88,8 @@ OLTP_ARGS="\
 --mysql-ignore-errors=all \
 "
 
-TESTNAME=/usr/local/sysbench/share/sysbench/$SCRIPT_NAME.lua
+TESTNAME=$SCRIPT_NAME
+#TESTNAME=/usr/local/sysbench/share/sysbench/$SCRIPT_NAME.lua
 
 CMD_PREPARE="sysbench $TESTNAME $ARGS $OLTP_ARGS prepare"
 #echo $CMD_PREPARE
